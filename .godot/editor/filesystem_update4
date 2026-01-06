@@ -1,0 +1,6 @@
+res://objects/one_bit_shader.tscn
+res://shaders/one_bit_shader.gdshader
+res://scenes/main.tscn
+res://scripts/one_bit_shader.gd
+res://scripts/main.gd
+res://scripts/global_exit_popup.gd
