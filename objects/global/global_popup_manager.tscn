@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://80kspviovy5j"]
+
+[ext_resource type="Script" uid="uid://068xen73l6kg" path="res://scripts/ui/popup_manager.gd" id="1_x4tpp"]
+
+[node name="PopupManager" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_x4tpp")

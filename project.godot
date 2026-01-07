@@ -10,20 +10,22 @@ config_version=5
 
 [application]
 
-config/name="stet"
+config/name="Steward Through Everlasting Tomes"
 run/main_scene="uid://ddt5pcb4167i3"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
 
 [autoload]
 
-OneBitShader="*res://objects/one_bit_shader.tscn"
-GlobalExitPopup="*res://scripts/global_exit_popup.gd"
+GlobalEventHandler="res://scripts/global/global_event_handler.gd"
+Utility="res://scripts/global/util.gd"
+GlobalPopupManager="res://objects/global/global_popup_manager.tscn"
+OneBitShader="*res://objects/global/one_bit_shader.tscn"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=832
+window/size/viewport_height=468
 window/size/mode=3
 window/size/resizable=false
 window/size/borderless=true
@@ -32,7 +34,11 @@ window/size/sharp_corners=true
 window/size/minimize_disabled=true
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
-window/stretch/scale=2.5
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/custom_font="uid://ce1m5vtdcc6ee"
 
 [rendering]
 

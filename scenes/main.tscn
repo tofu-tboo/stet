@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://4khx33m7oq5p"]
+[gd_scene load_steps=2 format=3 uid="uid://4khx33m7oq5p"]
+
+[ext_resource type="Texture2D" uid="uid://bqoqxdgbub6f" path="res://textures/bg.png" id="1_o5qli"]
 
 [node name="Main" type="Node"]
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite" type="Sprite2D" parent="Background"]
+texture_repeat = 2
+texture = ExtResource("1_o5qli")
+region_enabled = true
+region_rect = Rect2(0, 0, 832, 468)

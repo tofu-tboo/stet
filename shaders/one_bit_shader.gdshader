@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D screen_tex : hint_screen_texture, filter_nearest;
+uniform sampler2D screen_tex : hint_screen_texture, filter_nearest, repeat_disable;
 
 uniform vec4 color1 : source_color = vec4(0.24314, 0.15294, 0.13725, 1); // dark palette
 uniform vec4 color2 : source_color = vec4(0.96078, 0.96078, 0.86275, 1); // light palette

@@ -1,4 +1,9 @@
+res://shaders
+res://objects
+res://scripts/ui
+res://objects/global
+res://scripts/global
+res://fonts
+res://themes
 res://scenes
 res://scripts
-res://objects
-res://shaders

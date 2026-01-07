@@ -1,8 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://d012q0hkarsoy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
+radius = 11.0
+height = 44.0
 
 [node name="Player" type="RigidBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_bxedw")

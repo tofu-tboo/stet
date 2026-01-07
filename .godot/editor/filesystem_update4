@@ -1,6 +1,6 @@
-res://objects/one_bit_shader.tscn
 res://shaders/one_bit_shader.gdshader
+res://objects/rune_mist.tscn
+res://shaders/rune_mist.gdshader
+res://scenes/title.tscn
+res://objects/player.tscn
 res://scenes/main.tscn
-res://scripts/one_bit_shader.gd
-res://scripts/main.gd
-res://scripts/global_exit_popup.gd
