@@ -1,6 +1,4 @@
-res://shaders/one_bit_shader.gdshader
-res://objects/rune_mist.tscn
-res://shaders/rune_mist.gdshader
-res://scenes/title.tscn
-res://objects/player.tscn
 res://scenes/main.tscn
+res://shaders/one_bit_shader.gdshader
+res://scripts/global/responsive_window.gd
+res://scripts/bg_scroll.gd

@@ -17,23 +17,21 @@ config/icon="res://icon.png"
 
 [autoload]
 
+ResponsiveWindow="res://scripts/global/responsive_window.gd"
 GlobalEventHandler="res://scripts/global/global_event_handler.gd"
-Utility="res://scripts/global/util.gd"
-GlobalPopupManager="res://objects/global/global_popup_manager.tscn"
-OneBitShader="*res://objects/global/one_bit_shader.tscn"
+Utility="*res://scripts/global/util.gd"
+GlobalPopupManager="*res://objects/global/global_popup_manager.tscn"
+OneBitShader="res://objects/global/one_bit_shader.tscn"
 
 [display]
 
 window/size/viewport_width=832
 window/size/viewport_height=468
-window/size/mode=3
-window/size/resizable=false
-window/size/borderless=true
-window/size/always_on_top=true
-window/size/sharp_corners=true
-window/size/minimize_disabled=true
 window/size/maximize_disabled=true
+window/size/window_width_override=2496
+window/size/window_height_override=1404
 window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [gui]
 
@@ -46,3 +44,4 @@ textures/canvas_textures/default_texture_filter=0
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/decals/filter=2
 textures/light_projectors/filter=2
+environment/defaults/default_clear_color=Color(0.871141, 0.8711411, 0.8711411, 1)
