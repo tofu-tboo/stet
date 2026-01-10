@@ -1,15 +1,14 @@
-CanvasLayer
+RemoteTransform2D
 Sprite2D
+SubViewport
+Marker2D
+CollisionShape2D
+StaticBody2D
+TextureRect
+Control
+Label
+LineEdit      - Matches the "input" keyword.
+Button
+CanvasLayer
 Obstacle
 VisibleOnScreenNotifier2D
-Node2D
-AnimatableBody2D
-Player
-RigidBody2D
-Node
-Timer
-CollisionShape2D
-CollisionPolygon2D
-AspectRatioContainer
-StaticBody2D
-ShapeCast2D

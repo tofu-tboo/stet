@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds0dj55ua0ppm"]
+[gd_scene load_steps=5 format=3 uid="uid://ds0dj55ua0ppm"]
 
 [ext_resource type="Script" uid="uid://cgtilacjldgix" path="res://scripts/class/obstacles/obstacle.gd" id="1_ew4qi"]
+[ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="2_3e0je"]
 [ext_resource type="Texture2D" uid="uid://dv6xexbuv78xb" path="res://textures/obstacles/obs_book_half_open1.png" id="2_p6801"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mige3"]
+shader = ExtResource("2_3e0je")
+shader_parameter/draw_mode = 2
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 1.0000002375000001
+shader_parameter/stripes = 12.0
+shader_parameter/stripe_width = 0.50000002375
 
 [node name="BookHalfOpen1" type="AnimatableBody2D" groups=["Obstacle"]]
 z_index = 1
@@ -12,8 +22,8 @@ script = ExtResource("1_ew4qi")
 metadata/_custom_type_script = "uid://cgtilacjldgix"
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mige3")
 texture = ExtResource("2_p6801")
 
 [node name="Shape" type="CollisionPolygon2D" parent="."]
-position = Vector2(-0.6816947, -0.73163676)
-polygon = PackedVector2Array(6.2526307, -16.76021, -19.404598, 8.512437, -2.3122883, 25.390024, 20.418392, 2.844157, 24.326286, -7.630973)
+polygon = PackedVector2Array(3, -21, -22, 4, -5, 21, 17, -1, 22, -12)

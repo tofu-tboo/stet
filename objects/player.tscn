@@ -1,33 +1,120 @@
-[gd_scene load_steps=5 format=3 uid="uid://d012q0hkarsoy"]
+[gd_scene load_steps=9 format=3 uid="uid://d012q0hkarsoy"]
 
 [ext_resource type="Script" uid="uid://c0l2lvj842qyp" path="res://scripts/class/player.gd" id="1_eqqp1"]
-[ext_resource type="Texture2D" uid="uid://cyrkwtqv33n33" path="res://textures/test_char.png" id="2_ykyjo"]
+[ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="2_3rerk"]
+[ext_resource type="Texture2D" uid="uid://8vlga06ogy0f" path="res://textures/player/man_head.png" id="3_3rerk"]
+[ext_resource type="Texture2D" uid="uid://bsqld5wiqco6s" path="res://textures/player/body_template.png" id="3_f46kd"]
+[ext_resource type="Texture2D" uid="uid://d3sh21k324s5b" path="res://textures/player/foot_template.png" id="5_f46kd"]
+[ext_resource type="Texture2D" uid="uid://d2i3eo55kvs2t" path="res://textures/player/hand_template.png" id="6_3rerk"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_uxov2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_ykyjo")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i825w"]
+shader = ExtResource("2_3rerk")
+shader_parameter/draw_mode = 1
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 0.3
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
-radius = 11.0
-height = 44.0
+radius = 9.0
+height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_i825w")
 collision_mask = 11
-floor_max_angle = 1.5707964
+floor_block_on_wall = false
+floor_max_angle = 1.553343
 platform_floor_layers = 4294967042
 platform_wall_layers = 4
 script = ExtResource("1_eqqp1")
 metadata/_custom_type_script = "uid://c0l2lvj842qyp"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_uxov2")
+[node name="BodyOutline" type="Sprite2D" parent="."]
+use_parent_material = true
+rotation = -0.0005810559
+texture = ExtResource("3_f46kd")
+offset = Vector2(-1, -4)
+
+[node name="HeadOutline" type="Sprite2D" parent="."]
+use_parent_material = true
+rotation = -0.0005810559
+texture = ExtResource("3_3rerk")
+offset = Vector2(-1, -4)
+
+[node name="LFootOutline" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, 1.5)
+rotation = 0.0040484597
+texture = ExtResource("5_f46kd")
+offset = Vector2(-1, -4)
+
+[node name="RFootOutline" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, 1.5)
+rotation = 3.1415927
+scale = Vector2(1, -1)
+texture = ExtResource("5_f46kd")
+offset = Vector2(0, -4)
+
+[node name="LHandOutline" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-7, 7)
+texture = ExtResource("6_3rerk")
+
+[node name="RHandOutline" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(5, 6)
+texture = ExtResource("6_3rerk")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("3_f46kd")
+offset = Vector2(-1, -4)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Body"]
+remote_path = NodePath("../../BodyOutline")
+
+[node name="Head" type="Sprite2D" parent="."]
+rotation = -0.0005810559
+texture = ExtResource("3_3rerk")
+offset = Vector2(-1, -4)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Head"]
+remote_path = NodePath("../../HeadOutline")
+
+[node name="LFoot" type="Sprite2D" parent="."]
+position = Vector2(0, 1.5)
+rotation = 0.00404846
+texture = ExtResource("5_f46kd")
+offset = Vector2(-1, -4)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="LFoot"]
+remote_path = NodePath("../../LFootOutline")
+
+[node name="RFoot" type="Sprite2D" parent="."]
+position = Vector2(0, 1.5)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_f46kd")
+offset = Vector2(0, -4)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RFoot"]
+remote_path = NodePath("../../RFootOutline")
+
+[node name="LHand" type="Sprite2D" parent="."]
+position = Vector2(-7, 7)
+texture = ExtResource("6_3rerk")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="LHand"]
+remote_path = NodePath("../../LHandOutline")
+
+[node name="RHand" type="Sprite2D" parent="."]
+position = Vector2(5, 6)
+texture = ExtResource("6_3rerk")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="RHand"]
+remote_path = NodePath("../../RHandOutline")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, 2)
 shape = SubResource("CapsuleShape2D_bxedw")

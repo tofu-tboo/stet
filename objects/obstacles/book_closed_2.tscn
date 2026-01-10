@@ -1,7 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://db5f6yxl6spv1"]
+[gd_scene load_steps=6 format=3 uid="uid://db5f6yxl6spv1"]
 
 [ext_resource type="Script" uid="uid://cgtilacjldgix" path="res://scripts/class/obstacles/obstacle.gd" id="1_5xood"]
 [ext_resource type="Texture2D" uid="uid://bi7qo15bfldqj" path="res://textures/obstacles/obs_book_closed2.png" id="2_8o162"]
+[ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="2_312ah"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mige3"]
+shader = ExtResource("2_312ah")
+shader_parameter/draw_mode = 2
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 1.0000002375000001
+shader_parameter/stripes = 12.0
+shader_parameter/stripe_width = 0.50000002375
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attpc"]
 size = Vector2(32, 14)
@@ -15,6 +25,7 @@ script = ExtResource("1_5xood")
 metadata/_custom_type_script = "uid://cgtilacjldgix"
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mige3")
 texture = ExtResource("2_8o162")
 
 [node name="Shape" type="CollisionShape2D" parent="."]

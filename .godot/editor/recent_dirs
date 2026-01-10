@@ -1,12 +1,14 @@
-res://objects/global
+res://
+res://textures/ui
 res://scripts/global
+res://shaders
+res://objects/global
 res://scripts/class
 res://scripts
 res://objects
 res://objects/obstacles
 res://scripts/class/obstacles
 C:/Users/cdydo/Godot Projects/exports/stet
-res://shaders
 res://scripts/ui
 res://fonts
 res://themes

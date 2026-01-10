@@ -1,14 +1,3 @@
-res://objects/obstacles/book_closed_1.tscn
-res://shaders/one_bit_shader.gdshader
-res://scripts/class/obstacles/obstacle.gd
-res://scenes/main.tscn
-res://scripts/class/poisson_generator.gd
-res://objects/systems/obstacle_generator.tscn
-res://scripts/class/obstacle_generator.gd
-res://scripts/bg_scroll.gd
 res://objects/player.tscn
-res://scripts/class/player.gd
-res://scripts/class/obstacles/hyperparam.tres
-res://scripts/global/global_event_handler.gd
-res://scripts/global/mouse_pointer.gd
-res://objects/global/mouse_pointer.tscn
+res://shaders/outline.gdshader
+res://shaders/one_bit_shader.gdshader

@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://daseca7jh2qtj"]
+[gd_scene load_steps=5 format=3 uid="uid://daseca7jh2qtj"]
 
 [ext_resource type="Script" uid="uid://cgtilacjldgix" path="res://scripts/class/obstacles/obstacle.gd" id="1_sacro"]
 [ext_resource type="Texture2D" uid="uid://bspydo04q51pu" path="res://textures/obstacles/obs_plank.png" id="2_37mk3"]
+[ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="2_a0od7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mige3"]
+shader = ExtResource("2_a0od7")
+shader_parameter/draw_mode = 2
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 1.0000002375000001
+shader_parameter/stripes = 12.0
+shader_parameter/stripe_width = 0.50000002375
 
 [node name="Plank" type="AnimatableBody2D" groups=["Obstacle"]]
 z_index = 1
@@ -12,6 +22,7 @@ script = ExtResource("1_sacro")
 metadata/_custom_type_script = "uid://cgtilacjldgix"
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mige3")
 texture = ExtResource("2_37mk3")
 
 [node name="Shape" type="CollisionPolygon2D" parent="."]

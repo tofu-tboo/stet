@@ -1,12 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://fmv4oug4jngp"]
+[gd_scene load_steps=7 format=3 uid="uid://fmv4oug4jngp"]
 
 [ext_resource type="Texture2D" uid="uid://xnntdv1u7r1c" path="res://textures/ui/mouse_pointer.png" id="1_3jah1"]
+[ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="1_7gn8c"]
 [ext_resource type="Script" uid="uid://erq0q1wa58x2" path="res://scripts/global/mouse_pointer.gd" id="1_ww41f"]
+[ext_resource type="Texture2D" uid="uid://ulwwfand4fu1" path="res://textures/obstacles/obs_book_open1.png" id="4_fnrjd"]
+[ext_resource type="Texture2D" uid="uid://bih72nxgan0w2" path="res://textures/obstacles/obs_book_closed3.png" id="5_nidu0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mige3"]
+shader = ExtResource("1_7gn8c")
+shader_parameter/draw_mode = 2
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1
+shader_parameter/rotation_speed = 1.0000002375000001
+shader_parameter/stripes = 12.0
+shader_parameter/stripe_width = 0.50000002375
 
 [node name="CanvasLayer" type="CanvasLayer"]
 layer = 900
 
-[node name="MousePointer" type="Sprite2D" parent="."]
-texture = ExtResource("1_3jah1")
-offset = Vector2(-18, -18)
+[node name="MousePointer" type="Marker2D" parent="."]
 script = ExtResource("1_ww41f")
+
+[node name="Arrow" type="Sprite2D" parent="MousePointer"]
+material = SubResource("ShaderMaterial_mige3")
+texture = ExtResource("1_3jah1")
+
+[node name="Hand" type="Sprite2D" parent="MousePointer"]
+material = SubResource("ShaderMaterial_mige3")
+texture = ExtResource("4_fnrjd")
+
+[node name="IBeam" type="Sprite2D" parent="MousePointer"]
+material = SubResource("ShaderMaterial_mige3")
+texture = ExtResource("5_nidu0")
