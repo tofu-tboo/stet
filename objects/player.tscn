@@ -1,12 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://d012q0hkarsoy"]
+[gd_scene load_steps=5 format=3 uid="uid://d012q0hkarsoy"]
+
+[ext_resource type="Script" uid="uid://c0l2lvj842qyp" path="res://scripts/class/player.gd" id="1_eqqp1"]
+[ext_resource type="Texture2D" uid="uid://cyrkwtqv33n33" path="res://textures/test_char.png" id="2_ykyjo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxov2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ykyjo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
 radius = 11.0
 height = 44.0
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 11
+floor_max_angle = 1.5707964
+platform_floor_layers = 4294967042
+platform_wall_layers = 4
+script = ExtResource("1_eqqp1")
+metadata/_custom_type_script = "uid://c0l2lvj842qyp"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uxov2")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_bxedw")

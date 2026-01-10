@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsq5178j25vsb"]
+
+[ext_resource type="Script" uid="uid://cgtilacjldgix" path="res://scripts/class/obstacles/obstacle.gd" id="1_yng6d"]
+[ext_resource type="Texture2D" uid="uid://o60oja07twfi" path="res://textures/obstacles/obs_book_closed1.png" id="2_qf2qb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attpc"]
+size = Vector2(38, 14)
+
+[node name="BookClosed1" type="AnimatableBody2D" groups=["Obstacle"]]
+z_index = 1
+collision_layer = 2
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_yng6d")
+metadata/_custom_type_script = "uid://cgtilacjldgix"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_qf2qb")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_attpc")

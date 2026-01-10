@@ -1,0 +1,20 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs2nos50tytcx"]
+
+[ext_resource type="Script" uid="uid://dp5i6kabexvhu" path="res://scripts/class/poisson_generator.gd" id="1_p6f1n"]
+[ext_resource type="PackedScene" uid="uid://rk5ope4rsknu" path="res://objects/obstacles/book_open_1.tscn" id="2_qhe1c"]
+[ext_resource type="PackedScene" uid="uid://bsq5178j25vsb" path="res://objects/obstacles/book_closed_1.tscn" id="3_ti4kq"]
+[ext_resource type="PackedScene" uid="uid://db5f6yxl6spv1" path="res://objects/obstacles/book_closed_2.tscn" id="4_6anru"]
+[ext_resource type="PackedScene" uid="uid://dm6ijxk0b33rm" path="res://objects/obstacles/book_closed_3.tscn" id="5_vcwo7"]
+[ext_resource type="PackedScene" uid="uid://ds0dj55ua0ppm" path="res://objects/obstacles/book_half_open_1.tscn" id="6_nukyy"]
+[ext_resource type="PackedScene" uid="uid://daseca7jh2qtj" path="res://objects/obstacles/plank.tscn" id="7_bje7g"]
+
+[node name="ObstacleGenerator" type="Node2D"]
+script = ExtResource("1_p6f1n")
+max_gap = 300.0
+_ratio = Array[float]([3.0, 3.0, 3.0, 2.0, 1.0, 4.0])
+_platform_scenes = Array[PackedScene]([ExtResource("3_ti4kq"), ExtResource("4_6anru"), ExtResource("5_vcwo7"), ExtResource("6_nukyy"), ExtResource("2_qhe1c"), ExtResource("7_bje7g")])
+
+[node name="Tick" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Tick" to="." method="generate"]

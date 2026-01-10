@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://elkej1qgxhau"
-path="res://.godot/imported/test_bg.png-bff76fd1d712de096f89b409dd84003c.ctex"
+uid="uid://bspydo04q51pu"
+path="res://.godot/imported/obs_plank.png-b3212b7187f30731bc06535cbe4b6e61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/test_bg.png"
-dest_files=["res://.godot/imported/test_bg.png-bff76fd1d712de096f89b409dd84003c.ctex"]
+source_file="res://textures/obstacles/obs_plank.png"
+dest_files=["res://.godot/imported/obs_plank.png-b3212b7187f30731bc06535cbe4b6e61.ctex"]
 
 [params]
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://daseca7jh2qtj"]
+
+[ext_resource type="Script" uid="uid://cgtilacjldgix" path="res://scripts/class/obstacles/obstacle.gd" id="1_sacro"]
+[ext_resource type="Texture2D" uid="uid://bspydo04q51pu" path="res://textures/obstacles/obs_plank.png" id="2_37mk3"]
+
+[node name="Plank" type="AnimatableBody2D" groups=["Obstacle"]]
+z_index = 1
+collision_layer = 2
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_sacro")
+metadata/_custom_type_script = "uid://cgtilacjldgix"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_37mk3")
+
+[node name="Shape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-25, 13, -25, 15, -10, 23, 25, -12, 25, -14, 9, -22)

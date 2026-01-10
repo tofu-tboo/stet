@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds0dj55ua0ppm"]
+
+[ext_resource type="Script" uid="uid://cgtilacjldgix" path="res://scripts/class/obstacles/obstacle.gd" id="1_ew4qi"]
+[ext_resource type="Texture2D" uid="uid://dv6xexbuv78xb" path="res://textures/obstacles/obs_book_half_open1.png" id="2_p6801"]
+
+[node name="BookHalfOpen1" type="AnimatableBody2D" groups=["Obstacle"]]
+z_index = 1
+collision_layer = 2
+collision_mask = 0
+sync_to_physics = false
+script = ExtResource("1_ew4qi")
+metadata/_custom_type_script = "uid://cgtilacjldgix"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_p6801")
+
+[node name="Shape" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.6816947, -0.73163676)
+polygon = PackedVector2Array(6.2526307, -16.76021, -19.404598, 8.512437, -2.3122883, 25.390024, 20.418392, 2.844157, 24.326286, -7.630973)

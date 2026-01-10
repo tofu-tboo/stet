@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ObstacleParam" load_steps=2 format=3 uid="uid://dwo2sygq6h1yd"]
+
+[ext_resource type="Script" uid="uid://c48ivg5qoohjb" path="res://scripts/class/obstacles/obstacle_param.gd" id="1_pcu8k"]
+
+[resource]
+script = ExtResource("1_pcu8k")
+avg_ang_vel = 0.3
+abs_vel = Vector2(0, 40)

@@ -1,5 +1,5 @@
 extends Node
-
+# TODO
 const path = "res://scenes/"
 var current : String
 
@@ -16,16 +16,6 @@ func load_scene(next: String) -> bool:
 	# ScreenEffect.off()
 	change_scene_to_packed(load("res://scenes/loading.tscn") as PackedScene)
 	return true
-
-func load_game_mode(next: String) -> void:
-	Data.game_mode = next
-	
-	current = path + "main.tscn"
-	
-	# ScreenEffect.on()
-	# await ScreenEffect.fade_out(Color("#101010"))
-	# ScreenEffect.off()
-	change_scene_to_packed(load("res://scenes/loading.tscn") as PackedScene)
 
 func change_scene_to_packed(packed_scene: PackedScene, effect: String = "none") -> void:
 	var scene_instance: Node = packed_scene.instantiate()
@@ -44,5 +34,5 @@ func change_scene_to_packed(packed_scene: PackedScene, effect: String = "none") 
 			pass
 		"fade_in":
 			# await ScreenEffect.fade_in(Color("#101010"))
-            pass
+			pass
 	# ScreenEffect.off()

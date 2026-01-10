@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://4khx33m7oq5p"]
+[gd_scene load_steps=8 format=3 uid="uid://4khx33m7oq5p"]
 
 [ext_resource type="Script" uid="uid://dlpi714ubjia4" path="res://scripts/bg_scroll.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://oo82ntvhngbb" path="res://textures/bg.png" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://mfgm6il1nlaf" path="res://textures/screen_cover.png" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cs2nos50tytcx" path="res://objects/systems/obstacle_generator.tscn" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://d012q0hkarsoy" path="res://objects/player.tscn" id="5_tefeu"]
+[ext_resource type="PackedScene" uid="uid://bsq5178j25vsb" path="res://objects/obstacles/book_closed_1.tscn" id="6_tefeu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 distance = 60.000008
@@ -47,6 +50,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LeftLimit" type="StaticBody2D" parent="MapLimit"]
+collision_layer = 4
+collision_mask = 59
 
 [node name="Shape" type="CollisionShape2D" parent="MapLimit/LeftLimit"]
 position = Vector2(-294, 0)
@@ -54,8 +59,23 @@ rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_sugp2")
 
 [node name="RightLimit" type="StaticBody2D" parent="MapLimit"]
+collision_layer = 4
+collision_mask = 59
 
 [node name="Shape" type="CollisionShape2D" parent="MapLimit/RightLimit"]
 position = Vector2(294, 0)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_sugp2")
+
+[node name="ObstacleGenerator" parent="." instance=ExtResource("4_tbgi4")]
+position = Vector2(182, 468)
+screen_padding = 20.0
+min_gap = 80.0
+max_gap = 250.0
+_cnt_per_tick = 6
+
+[node name="Player" parent="." instance=ExtResource("5_tefeu")]
+position = Vector2(408, -576)
+
+[node name="BookClosed1" parent="." instance=ExtResource("6_tefeu")]
+position = Vector2(416, 312.4002)
