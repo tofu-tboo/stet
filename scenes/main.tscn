@@ -74,7 +74,7 @@ max_gap = 250.0
 _cnt_per_tick = 6
 
 [node name="Player" parent="." instance=ExtResource("5_tefeu")]
-position = Vector2(408, -576)
+position = Vector2(409, -576)
 
 [node name="BookClosed1" parent="." instance=ExtResource("6_tefeu")]
 position = Vector2(416, 312.4002)

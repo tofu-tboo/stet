@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs2nos50tytcx"]
 
-[ext_resource type="Script" uid="uid://dp5i6kabexvhu" path="res://scripts/class/poisson_generator.gd" id="1_p6f1n"]
+[ext_resource type="Script" uid="uid://dp5i6kabexvhu" path="res://scripts/class/generator/poisson_generator.gd" id="1_p6f1n"]
 [ext_resource type="PackedScene" uid="uid://rk5ope4rsknu" path="res://objects/obstacles/book_open_1.tscn" id="2_qhe1c"]
 [ext_resource type="PackedScene" uid="uid://bsq5178j25vsb" path="res://objects/obstacles/book_closed_1.tscn" id="3_ti4kq"]
 [ext_resource type="PackedScene" uid="uid://db5f6yxl6spv1" path="res://objects/obstacles/book_closed_2.tscn" id="4_6anru"]

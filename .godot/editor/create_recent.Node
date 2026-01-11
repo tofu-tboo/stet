@@ -1,14 +1,15 @@
-RemoteTransform2D
+HBoxContainer
+CanvasLayer
+LeftHand
+RightHand
 Sprite2D
-SubViewport
-Marker2D
+AnimationTree
 CollisionShape2D
 StaticBody2D
-TextureRect
-Control
-Label
-LineEdit      - Matches the "input" keyword.
-Button
-CanvasLayer
-Obstacle
-VisibleOnScreenNotifier2D
+Node2D
+Head
+Body
+RightFoot
+LeftFoot
+AnimPart
+Parallax2D

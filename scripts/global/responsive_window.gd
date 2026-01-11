@@ -14,7 +14,7 @@ func _ready():
 	# 최소 1배 보장
 	scale = max(scale, 1)
 
-	var window_size: Vector2i = base * (scale-1)
+	var window_size: Vector2i = base * scale
 	DisplayServer.window_set_size(window_size)
 
 	# 중앙 정렬

@@ -91,8 +91,9 @@ SpaceBar={
 
 [rendering]
 
+occlusion_culling/jitter_projection=false
 textures/canvas_textures/default_texture_filter=0
-textures/default_filters/use_nearest_mipmap_filter=true
-textures/decals/filter=2
-textures/light_projectors/filter=2
+global_illumination/sdfgi/frames_to_update_lights=0
 environment/defaults/default_clear_color=Color(0.871141, 0.8711411, 0.8711411, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

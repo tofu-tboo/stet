@@ -1,13 +1,12 @@
 extends Control
 
 @onready var sprite: Sprite2D = $Sprite
-var speed: float = 100.0
+
+var accum: float = 0.0
 
 func _ready() -> void:
-	set_process(false)
+	set_process(true)
 
-func _physics_process(delta: float) -> void:
-	sprite.region_rect.position.y += floor(delta * speed)
-	
-	if sprite.region_rect.position.y >= 2 ** 16:
-		sprite.region_rect.position.y -= 2 ** 16
+func _process(delta: float) -> void:
+	accum += 100 * delta
+	sprite.region_rect.position.y = fposmod(accum, sprite.texture.get_height())
