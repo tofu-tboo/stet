@@ -7,7 +7,7 @@
 [node name="PlayerTest" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_kisq8")]
-position = Vector2(400, 184)
+position = Vector2(392, 320)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(396, 432)

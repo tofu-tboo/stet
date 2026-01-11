@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d012q0hkarsoy"]
+[gd_scene load_steps=22 format=3 uid="uid://d012q0hkarsoy"]
 
 [ext_resource type="Script" uid="uid://c0l2lvj842qyp" path="res://scripts/class/player/player.gd" id="1_eqqp1"]
 [ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="2_3rerk"]
@@ -14,22 +14,31 @@
 [ext_resource type="Script" uid="uid://b42iaecetyro0" path="res://scripts/class/player/body.gd" id="10_3nfmf"]
 [ext_resource type="Script" uid="uid://bv60wo88s84rw" path="res://scripts/class/player/head.gd" id="11_42cpl"]
 [ext_resource type="Script" uid="uid://r03a3whcpgjh" path="res://scripts/class/player/left_hand.gd" id="12_42cpl"]
+[ext_resource type="Script" uid="uid://cvhwt8jeh4t74" path="res://scripts/ui/hp_bar.gd" id="15_5esnd"]
+[ext_resource type="Texture2D" uid="uid://2h08omy3xj0h" path="res://textures/ui/hp_full.png" id="15_mqnmn"]
+[ext_resource type="PackedScene" uid="uid://bp0dfqx01lvgc" path="res://objects/beam.tscn" id="15_w1o2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i825w"]
 shader = ExtResource("2_3rerk")
-shader_parameter/draw_mode = 1
 shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_thickness = 2
-shader_parameter/rotation_speed = 0.3
-shader_parameter/stripes = 16.0
-shader_parameter/stripe_width = 0.5
+shader_parameter/outline_thickness = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w1o2u"]
+shader = ExtResource("2_3rerk")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
 radius = 14.0
 height = 58.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqnmn"]
+shader = ExtResource("2_3rerk")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("parts")]
-collision_mask = 11
+collision_mask = 15
 floor_block_on_wall = false
 floor_max_angle = 1.553343
 platform_floor_layers = 4294967042
@@ -87,7 +96,7 @@ script = ExtResource("12_42cpl")
 metadata/_custom_type_script = "uid://r03a3whcpgjh"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Sprites/LHand"]
-remote_path = NodePath("../../RHandOutline")
+remote_path = NodePath("../../LHandOutline")
 
 [node name="LFoot" type="Sprite2D" parent="Sprites"]
 position = Vector2(5, 28)
@@ -142,6 +151,14 @@ remote_path = NodePath("../../RHandOutline")
 show_behind_parent = true
 texture = ExtResource("8_r673r")
 
+[node name="Tip" type="Node2D" parent="Sprites/RHand/Stick"]
+material = SubResource("ShaderMaterial_w1o2u")
+position = Vector2(15, -15)
+
+[node name="Beam" parent="Sprites/RHand/Stick/Tip" instance=ExtResource("15_w1o2u")]
+visible = false
+position = Vector2(0, 0)
+
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(1, 12)
 shape = SubResource("CapsuleShape2D_bxedw")
@@ -150,5 +167,30 @@ shape = SubResource("CapsuleShape2D_bxedw")
 layer = 800
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerStat"]
-offset_right = 40.0
-offset_bottom = 40.0
+material = SubResource("ShaderMaterial_mqnmn")
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 188.0
+offset_bottom = 61.0
+script = ExtResource("15_5esnd")
+
+[node name="HP1" type="TextureRect" parent="PlayerStat/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("15_mqnmn")
+
+[node name="HP2" type="TextureRect" parent="PlayerStat/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("15_mqnmn")
+
+[node name="HP3" type="TextureRect" parent="PlayerStat/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+texture = ExtResource("15_mqnmn")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-46, -45, 92, 157)
+
+[connection signal="hurt" from="." to="PlayerStat/HBoxContainer" method="display_hp"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="sink"]

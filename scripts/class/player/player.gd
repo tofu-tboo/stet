@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
+signal hurt(cur: int)
+signal dead()
+
 enum POSE {
 	NONE = -1,
 	IDLE,
@@ -16,11 +19,15 @@ signal pose_out(POSE)
 signal dir_ch(int)
 
 @export var speed: float = 80.0
-@export var jump_velocity: float = -400.0
+@export var jump_velocity: float = 500.0
 @export var parts: Array[AnimPart] = []
 var gravity: float = 900
 const MAX_JUMPS: int = 2
 var jumps_left: int = MAX_JUMPS
+
+@onready var beam: Beam = $Sprites/RHand/Stick/Tip/Beam
+
+var _beam_active: bool = false
 
 var last_dir: int = 1:
 	set(v):
@@ -32,6 +39,7 @@ var hp: int = 3:
 	set(v):
 		if v < 0:
 			v = 0
+			dead.emit()
 		hp = v
 
 func _ready() -> void:
@@ -68,9 +76,25 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 
 	if Input.is_action_just_pressed(&"SpaceBar") and jumps_left > 0:
-		velocity.y = jump_velocity
+		velocity.y = -jump_velocity
 		jumps_left -= 1
 		
 		pose_in.emit(POSE.JUMP)
 
+	var buttons_active: bool = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+	if buttons_active != _beam_active:
+		_beam_active = buttons_active
+		beam.set_casting(_beam_active)
+	
+	# 빔이 활성화된 경우, 빔의 타겟을 현재 마우스 위치(Global 좌표)로 업데이트
+	if _beam_active:
+		beam.target_position = get_global_mouse_position()
+
 	move_and_slide()
+
+func _hurt(dam: int) -> void:
+	hp -= dam
+	hurt.emit(hp)
+
+func sink() -> void:
+	_hurt(3)

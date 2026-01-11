@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c63ronb6br3x"
-path="res://.godot/imported/rune_mist.png-e8ba09d3050d66cef6490951b84a7890.ctex"
+uid="uid://tuy67thw8jwl"
+path="res://.godot/imported/hp_empty.png-785561ecccb461571f0a989f3059e476.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/rune_mist.png"
-dest_files=["res://.godot/imported/rune_mist.png-e8ba09d3050d66cef6490951b84a7890.ctex"]
+source_file="res://textures/ui/hp_empty.png"
+dest_files=["res://.godot/imported/hp_empty.png-785561ecccb461571f0a989f3059e476.ctex"]
 
 [params]
 

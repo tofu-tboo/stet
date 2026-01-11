@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0y33cbvw12fv"]
+
+[ext_resource type="Script" uid="uid://caduanur1melf" path="res://scripts/rune_mist_manager.gd" id="1_hq2yc"]
+[ext_resource type="Shader" uid="uid://c7686jpqjokbj" path="res://shaders/rune_mist.gdshader" id="2_2g37r"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hq2yc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2g37r"]
+noise = SubResource("FastNoiseLite_hq2yc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mn7pl"]
+shader = ExtResource("2_2g37r")
+shader_parameter/radii = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/mist_color = Color(0.1, 0, 0.1, 0.95)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_2g37r")
+shader_parameter/edge_softness = 0.4
+
+[node name="RuneMistManager" type="CanvasLayer"]
+script = ExtResource("1_hq2yc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_mn7pl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

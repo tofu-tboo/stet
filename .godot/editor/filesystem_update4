@@ -1,12 +1,9 @@
-res://scripts/class/player/left_foot.gd
-res://scripts/class/player/player.gd
-res://scripts/class/player/right_foot.gd
-res://scripts/class/player/anim_part.gd
 res://scenes/test/player test.tscn
 res://shaders/outline.gdshader
+res://shaders/beam.gdshader
 res://shaders/one_bit_shader.gdshader
+res://scripts/beam.gd
+res://scripts/rune_mist_manager.gd
+res://objects/systems/rune_mist_manager.tscn
 res://scenes/main.tscn
-res://objects/player.tscn
-res://scripts/class/player/body.gd
-res://scripts/class/player/left_hand.gd
-res://scripts/class/player/right_hand.gd
+res://shaders/rune_mist.gdshader
