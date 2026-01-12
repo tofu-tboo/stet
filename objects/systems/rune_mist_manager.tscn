@@ -10,12 +10,12 @@ noise = SubResource("FastNoiseLite_hq2yc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mn7pl"]
 shader = ExtResource("2_2g37r")
-shader_parameter/radii = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/radii = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/mist_color = Color(0.1, 0, 0.1, 0.95)
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_2g37r")
 shader_parameter/edge_softness = 0.4
 
-[node name="RuneMistManager" type="CanvasLayer"]
+[node name="RuneMistManager" type="CanvasLayer" groups=["MistManager"]]
 script = ExtResource("1_hq2yc")
 
 [node name="ColorRect" type="ColorRect" parent="."]

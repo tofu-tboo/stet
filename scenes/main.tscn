@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://4khx33m7oq5p"]
+[gd_scene load_steps=17 format=3 uid="uid://4khx33m7oq5p"]
 
 [ext_resource type="Script" uid="uid://dlpi714ubjia4" path="res://scripts/bg_scroll.gd" id="1_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://oo82ntvhngbb" path="res://textures/bg.png" id="1_o5qli"]
@@ -6,7 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://mfgm6il1nlaf" path="res://textures/screen_cover.png" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cs2nos50tytcx" path="res://objects/systems/obstacle_generator.tscn" id="4_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://d012q0hkarsoy" path="res://objects/player.tscn" id="5_tefeu"]
-[ext_resource type="PackedScene" uid="uid://bsq5178j25vsb" path="res://objects/obstacles/book_closed_1.tscn" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://b8qi4ou66usst" path="res://objects/systems/enemy_generator.tscn" id="6_85g3d"]
+[ext_resource type="PackedScene" uid="uid://daseca7jh2qtj" path="res://objects/obstacles/plank.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://xe8tuc8tjkv2" path="res://objects/ui/setting_popup.tscn" id="9_choun"]
+[ext_resource type="AudioStream" uid="uid://b83qcpp8mkkcc" path="res://audios/bgm.mp3" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://bybpyw5xiao5j" path="res://objects/ui/result_popup.tscn" id="10_eb6dy"]
+[ext_resource type="Script" uid="uid://bbd3riujn8jc7" path="res://scripts/ui/score.gd" id="11_ya4ey"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 normal = Vector2(1, 0)
@@ -23,6 +28,7 @@ normal = Vector2(0, 1)
 
 [node name="RuneMistManager" parent="." instance=ExtResource("1_o6xl0")]
 layer = 500
+shrink_speed = 0.001
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 3
@@ -97,11 +103,61 @@ shape = SubResource("WorldBoundaryShape2D_o6xl0")
 position = Vector2(182, 468)
 screen_padding = 20.0
 min_gap = 80.0
-max_gap = 250.0
-_cnt_per_tick = 6
+max_gap = 220.0
+gen_intv = 1.2
+
+[node name="EnemyGenerator" parent="." instance=ExtResource("6_85g3d")]
+position = Vector2(416, -48)
 
 [node name="Player" parent="." instance=ExtResource("5_tefeu")]
-position = Vector2(409, -576)
+position = Vector2(417, 223)
 
-[node name="BookClosed1" parent="." instance=ExtResource("6_tefeu")]
-position = Vector2(416, 312.4002)
+[node name="Plank" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(419, 296)
+
+[node name="Plank2" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(512, 368)
+
+[node name="SettingPopup" parent="." instance=ExtResource("9_choun")]
+
+[node name="ResultPopup" parent="." instance=ExtResource("10_eb6dy")]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+position = Vector2(416, 234)
+current = true
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="AudioListener2D"]
+process_mode = 3
+stream = ExtResource("10_choun")
+volume_db = 13.0
+autoplay = true
+bus = &"BGM"
+
+[node name="Plank3" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(288, 400)
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 800
+
+[node name="Score" type="Label" parent="UI"]
+offset_left = 616.0
+offset_top = 8.0
+offset_right = 816.0
+offset_bottom = 67.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("11_ya4ey")
+
+[node name="Timer" type="Timer" parent="UI/Score"]
+wait_time = 0.25
+autostart = true
+
+[node name="Plank4" parent="." instance=ExtResource("7_o6xl0")]
+position = Vector2(408, 405)
+
+[connection signal="dead" from="Player" to="ResultPopup" method="open"]
+[connection signal="timeout" from="UI/Score/Timer" to="UI/Score" method="add_score"]

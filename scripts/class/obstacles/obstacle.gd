@@ -2,6 +2,7 @@
 extends Platform
 class_name Obstacle
 
+@onready var no_rot: bool = false
 @onready var hyperparam: ObstacleParam = load("res://scripts/class/obstacles/hyperparam.tres")
 var radius: float = 0.0
 var levi_speed: float
@@ -42,7 +43,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	position.y += delta * levi_speed
-	rotation += delta * rot_speed
+	if not no_rot:
+		rotation += delta * rot_speed
 
 func _take_radius() -> void:
 	var collission_shape = $Shape

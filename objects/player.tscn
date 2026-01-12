@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d012q0hkarsoy"]
+[gd_scene load_steps=23 format=3 uid="uid://d012q0hkarsoy"]
 
 [ext_resource type="Script" uid="uid://c0l2lvj842qyp" path="res://scripts/class/player/player.gd" id="1_eqqp1"]
 [ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="2_3rerk"]
@@ -17,34 +17,52 @@
 [ext_resource type="Script" uid="uid://cvhwt8jeh4t74" path="res://scripts/ui/hp_bar.gd" id="15_5esnd"]
 [ext_resource type="Texture2D" uid="uid://2h08omy3xj0h" path="res://textures/ui/hp_full.png" id="15_mqnmn"]
 [ext_resource type="PackedScene" uid="uid://bp0dfqx01lvgc" path="res://objects/beam.tscn" id="15_w1o2u"]
+[ext_resource type="AudioStream" uid="uid://bsstfmvnkycwq" path="res://audios/hurt.wav" id="18_s4hvt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i825w"]
+resource_local_to_scene = true
 shader = ExtResource("2_3rerk")
+shader_parameter/draw_mode = 2
 shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_thickness = 1.0
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 0.3
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w1o2u"]
 shader = ExtResource("2_3rerk")
+shader_parameter/draw_mode = 0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_thickness = 1.0
+shader_parameter/outline_thickness = 1
+shader_parameter/rotation_speed = 0.3
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxedw"]
 radius = 14.0
 height = 58.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mqnmn"]
+resource_local_to_scene = true
 shader = ExtResource("2_3rerk")
+shader_parameter/draw_mode = 2
 shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/outline_thickness = 1.0
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 0.3
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("parts")]
-collision_mask = 15
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("parts") groups=["Player"]]
+collision_mask = 7
 floor_block_on_wall = false
 floor_max_angle = 1.553343
 platform_floor_layers = 4294967042
 platform_wall_layers = 4
 script = ExtResource("1_eqqp1")
+speed = null
+jump_velocity = null
 parts = [NodePath("Sprites/LHand"), NodePath("Sprites/LFoot"), NodePath("Sprites/RFoot"), NodePath("Sprites/Body"), NodePath("Sprites/Head"), NodePath("Sprites/RHand")]
+invincibility_duration = null
 metadata/_custom_type_script = "uid://c0l2lvj842qyp"
 
 [node name="Sprites" type="Node2D" parent="."]
@@ -191,6 +209,12 @@ texture = ExtResource("15_mqnmn")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(-46, -45, 92, 157)
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_s4hvt")
+volume_db = 4.0
+max_polyphony = 4
+bus = &"Effect"
 
 [connection signal="hurt" from="." to="PlayerStat/HBoxContainer" method="display_hp"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="sink"]

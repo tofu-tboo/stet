@@ -1,7 +1,8 @@
 shader_type canvas_item;
 
-// 360도를 64개 구간으로 나누어 각 구간의 안개 시작 거리를 저장
-uniform float radii[64];
+const int piece = 128;
+// 360도를 piece개 구간으로 나누어 각 구간의 안개 시작 거리를 저장
+uniform float radii[piece];
 uniform vec4 mist_color : source_color = vec4(0.1, 0.0, 0.1, 0.95);
 uniform sampler2D noise_tex : repeat_enable; // 안개 경계면을 울렁거리게 할 노이즈
 uniform float edge_softness = 0.15; // 경계면 부드러움 정도
@@ -17,9 +18,9 @@ void fragment() {
 	
 	// 각도를 0~1 범위로 정규화 및 배열 인덱스로 변환
 	float angle_norm = (angle / 6.28318530718) + 0.5;
-	float idx_f = angle_norm * 64.0;
-	int idx = int(idx_f) % 64;
-	int next_idx = (idx + 1) % 64;
+	float idx_f = angle_norm * float(piece);
+	int idx = int(idx_f) % piece;
+	int next_idx = (idx + 1) % piece;
 	float t = fract(idx_f);
 	
 	// 인접한 두 구간의 반지름을 보간하여 부드러운 곡선 생성

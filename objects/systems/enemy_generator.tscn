@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8qi4ou66usst"]
+
+[ext_resource type="Script" uid="uid://ghrhj876p5ia" path="res://scripts/class/generator/enemy_generator.gd" id="1_x1wsf"]
+[ext_resource type="PackedScene" uid="uid://c88c4l3na103o" path="res://objects/enemy.tscn" id="2_wylp5"]
+
+[node name="EnemyGenerator" type="Node2D"]
+script = ExtResource("1_x1wsf")
+enemy_scene = ExtResource("2_wylp5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 16.0
+autostart = true

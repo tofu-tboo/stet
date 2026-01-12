@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfkyy0mvgrjj0"]
+
+[ext_resource type="Shader" uid="uid://d2xxfonhn4adi" path="res://shaders/curtain.gdshader" id="1_bjw7r"]
+[ext_resource type="Script" uid="uid://bgslw86r1jchk" path="res://scripts/curtain.gd" id="2_jtrle"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pyl7j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3w7a"]
+noise = SubResource("FastNoiseLite_pyl7j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b3w7a"]
+shader = ExtResource("1_bjw7r")
+shader_parameter/cutoff = 0.0
+shader_parameter/curtain_color = Color(0, 0, 0, 1)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_b3w7a")
+shader_parameter/edge_softness = 0.1
+shader_parameter/noise_scale = 0.1
+
+[node name="Curtain" type="ColorRect"]
+material = SubResource("ShaderMaterial_b3w7a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("2_jtrle")

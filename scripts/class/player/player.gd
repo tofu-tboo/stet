@@ -21,6 +21,10 @@ signal dir_ch(int)
 @export var speed: float = 80.0
 @export var jump_velocity: float = 500.0
 @export var parts: Array[AnimPart] = []
+@export var invincibility_duration: float = 3.0
+
+var _invincibility_timer: Timer
+var _is_invincible: bool = false
 var gravity: float = 900
 const MAX_JUMPS: int = 2
 var jumps_left: int = MAX_JUMPS
@@ -37,7 +41,7 @@ var last_dir: int = 1:
 
 var hp: int = 3:
 	set(v):
-		if v < 0:
+		if v <= 0:
 			v = 0
 			dead.emit()
 		hp = v
@@ -51,6 +55,12 @@ func _ready() -> void:
 	
 	pose_in.emit(POSE.IDLE)
 	last_dir = 1
+	
+	_invincibility_timer = Timer.new()
+	_invincibility_timer.wait_time = invincibility_duration
+	_invincibility_timer.one_shot = true
+	_invincibility_timer.timeout.connect(_on_invincibility_timeout)
+	add_child(_invincibility_timer)
 
 
 func _physics_process(delta: float) -> void:
@@ -85,6 +95,10 @@ func _physics_process(delta: float) -> void:
 	if buttons_active != _beam_active:
 		_beam_active = buttons_active
 		beam.set_casting(_beam_active)
+		if _beam_active:
+			pose_in.emit(POSE.ATTACK)
+		else:
+			pose_out.emit(POSE.ATTACK)
 	
 	# 빔이 활성화된 경우, 빔의 타겟을 현재 마우스 위치(Global 좌표)로 업데이트
 	if _beam_active:
@@ -92,9 +106,29 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _hurt(dam: int) -> void:
+func take_damage(dam: int) -> void:
+	if _is_invincible:
+		return
+	if hp <= 0:
+		return
 	hp -= dam
+	$Hurt.play()
 	hurt.emit(hp)
+	
+	_start_invincibility()
 
 func sink() -> void:
-	_hurt(3)
+	take_damage(3)
+
+func _start_invincibility() -> void:
+	_is_invincible = true
+	_invincibility_timer.start()
+	if $Sprites.material is ShaderMaterial:
+		($Sprites.material as ShaderMaterial).set_shader_parameter("draw_mode", 4)
+		($Sprites.material as ShaderMaterial).set_shader_parameter("outline_color", Color.BLACK)
+
+func _on_invincibility_timeout() -> void:
+	_is_invincible = false
+	if $Sprites.material is ShaderMaterial:
+		($Sprites.material as ShaderMaterial).set_shader_parameter("draw_mode", 2)
+		($Sprites.material as ShaderMaterial).set_shader_parameter("outline_color", Color.WHITE)

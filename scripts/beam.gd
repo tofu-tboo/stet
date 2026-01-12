@@ -35,8 +35,13 @@ func set_casting(cast: bool) -> void:
 		
 		_timer.wait_time = damage_interval
 		_timer.start()
+		
+		$Sound.play()
+		$SoundTimer.start()
+		
 	else:
 		_timer.stop()
+		$SoundTimer.stop()
 
 func _ready() -> void:
 	set_as_top_level(true)
@@ -145,11 +150,13 @@ func _on_timer_timeout() -> void:
 	_apply_damage()
 	
 	# 룬 안개 밀어내기 (Timer Timeout 마다 실행)
-	var local_mouse := to_local(target_position)
-	var direction := local_mouse.normalized()
-	if local_mouse.length_squared() < 1.0:
-		direction = Vector2.RIGHT
-	get_tree().call_group("MistManager", "push_mist", global_position, direction, mist_push_power * damage_interval)
+	var hit_point: Vector2
+	if $RayCast2D.is_colliding():
+		hit_point = $RayCast2D.get_collision_point()
+	else:
+		hit_point = to_global($RayCast2D.target_position)
+		
+	get_tree().call_group("MistManager", "push_mist", global_position, hit_point, mist_push_power * damage_interval)
 
 func _apply_damage() -> void:
 	if not $RayCast2D.is_colliding():
@@ -164,3 +171,7 @@ func _apply_damage() -> void:
 	var collider: Object = $RayCast2D.get_collider()
 	if collider and collider.has_method("hurt"):
 		collider.hurt(damage_amount)
+
+
+func _on_sound_timer_timeout() -> void:
+	$Sound.play()

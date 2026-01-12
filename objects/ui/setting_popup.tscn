@@ -1,0 +1,200 @@
+[gd_scene load_steps=13 format=3 uid="uid://xe8tuc8tjkv2"]
+
+[ext_resource type="Texture2D" uid="uid://10ejyptliwwq" path="res://textures/ui/panel.png" id="1_8yn5h"]
+[ext_resource type="Script" uid="uid://7dsois4b3ul6" path="res://scripts/ui/setting_popup.gd" id="1_bnbq5"]
+[ext_resource type="Texture2D" uid="uid://c63ronb6br3x" path="res://textures/effect/rune_mist.png" id="2_ciohx"]
+[ext_resource type="Shader" uid="uid://nponvbe1fpdc" path="res://shaders/spread.gdshader" id="2_nbppr"]
+[ext_resource type="Texture2D" uid="uid://bwbgramw58gj0" path="res://textures/player/man_hand.png" id="2_yiq3q"]
+[ext_resource type="Texture2D" uid="uid://dopbcaalc2cnl" path="res://textures/ui/btn_normal.png" id="4_yiq3q"]
+[ext_resource type="Script" uid="uid://brcojl05vg136" path="res://scripts/ui/custom_button.gd" id="5_custom_btn"]
+[ext_resource type="Texture2D" uid="uid://dxs0kvylj8kw0" path="res://textures/ui/btn_pushed.png" id="7_oii67"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nbppr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fixo8"]
+noise = SubResource("FastNoiseLite_nbppr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fixo8"]
+shader = ExtResource("2_nbppr")
+shader_parameter/radius = 0.0
+shader_parameter/mist_color = Color(1, 1, 1, 0.9490196)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_fixo8")
+shader_parameter/edge_softness = 0.1
+shader_parameter/noise_scale = 0.1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ciohx"]
+texture = ExtResource("2_ciohx")
+
+[node name="SettingPopup" type="CanvasLayer"]
+layer = 850
+
+[node name="SettingPopup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bnbq5")
+
+[node name="Effect" type="ColorRect" parent="SettingPopup"]
+material = SubResource("ShaderMaterial_fixo8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Base" type="NinePatchRect" parent="SettingPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8yn5h")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="BGM" type="HSlider" parent="SettingPopup/Base"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -55.0
+offset_right = 56.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("2_yiq3q")
+theme_override_icons/grabber_highlight = ExtResource("2_yiq3q")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_ciohx")
+value = 100.0
+
+[node name="Effect" type="HSlider" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 86.0
+offset_right = 206.0
+offset_bottom = 104.0
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("2_yiq3q")
+theme_override_icons/grabber_highlight = ExtResource("2_yiq3q")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_ciohx")
+value = 100.0
+
+[node name="BGMLabel" type="Label" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 25.0
+offset_right = 78.0
+offset_bottom = 45.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Music Volume"
+
+[node name="EffectLabel" type="Label" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 66.0
+offset_right = 147.0
+offset_bottom = 86.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Effect Volume"
+
+[node name="BGMVolume" type="Label" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 45.0
+offset_right = 254.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 12
+text = "100%"
+
+[node name="EffectVolume" type="Label" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 86.0
+offset_right = 254.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 12
+text = "100%"
+
+[node name="QuitButton" type="NinePatchRect" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 138.0
+offset_right = 134.0
+offset_bottom = 170.0
+texture = ExtResource("4_yiq3q")
+patch_margin_left = 12
+patch_margin_top = 17
+patch_margin_right = 12
+patch_margin_bottom = 14
+script = ExtResource("5_custom_btn")
+pressed_texture = ExtResource("7_oii67")
+
+[node name="Label" type="Label" parent="SettingPopup/Base/QuitButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.5
+offset_top = 3.0
+offset_right = 16.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Quit"
+horizontal_alignment = 1
+
+[node name="CancelButton" type="NinePatchRect" parent="SettingPopup/Base"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 138.0
+offset_right = 230.0
+offset_bottom = 170.0
+texture = ExtResource("4_yiq3q")
+patch_margin_left = 12
+patch_margin_top = 17
+patch_margin_right = 12
+patch_margin_bottom = 14
+script = ExtResource("5_custom_btn")
+pressed_texture = ExtResource("7_oii67")
+
+[node name="Label" type="Label" parent="SettingPopup/Base/CancelButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_top = 3.0
+offset_right = 22.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 14
+text = "Cancel"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="SettingPopup/Base/QuitButton" to="SettingPopup" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="SettingPopup/Base/CancelButton" to="SettingPopup" method="_on_cancel_button_pressed"]

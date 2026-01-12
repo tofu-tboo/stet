@@ -7,6 +7,8 @@ enum CursorType {
 }
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	set_cursor(CursorType.ARROW)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 

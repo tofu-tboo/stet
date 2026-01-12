@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://c88c4l3na103o"]
+
+[ext_resource type="Shader" uid="uid://csaibbromvwnd" path="res://shaders/outline.gdshader" id="1_7jlpp"]
+[ext_resource type="Script" uid="uid://djkutf4su5oe5" path="res://scripts/class/enemy/enemy.gd" id="2_we7g8"]
+[ext_resource type="Texture2D" uid="uid://ciutp4vecxfef" path="res://textures/enemy/enemy1.png" id="3_3hb37"]
+[ext_resource type="Texture2D" uid="uid://dwwppq7trtmot" path="res://textures/enemy/enemy2.png" id="4_2ld5k"]
+[ext_resource type="AudioStream" uid="uid://vtr7ma0ty544" path="res://audios/roar.wav" id="4_we7g8"]
+[ext_resource type="AudioStream" uid="uid://c7udtxjuegswn" path="res://audios/EnemyDie.wav" id="6_2ld5k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_we7g8"]
+resource_local_to_scene = true
+shader = ExtResource("1_7jlpp")
+shader_parameter/draw_mode = 2
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 2
+shader_parameter/rotation_speed = 0.3
+shader_parameter/stripes = 16.0
+shader_parameter/stripe_width = 0.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l24ub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3hb37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2ld5k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jlpp"]
+radius = 17.463253
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hb37"]
+radius = 15.0
+
+[node name="Enemy" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_we7g8")
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("2_we7g8")
+max_hp = 8
+speed = 120.0
+descend_speed = 100.0
+attack_interval = 5.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_l24ub")
+autoplay = "default"
+frame_progress = 0.1268625
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.3743144, 0.98571146)
+shape = SubResource("CircleShape2D_7jlpp")
+
+[node name="Roar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_we7g8")
+volume_db = 2.0
+bus = &"Effect"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_3hb37")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2ld5k")
+volume_db = -3.0
+bus = &"Effect"

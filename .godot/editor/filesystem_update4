@@ -1,9 +1,19 @@
-res://scenes/test/player test.tscn
+res://objects/ui/setting_popup.tscn
 res://shaders/outline.gdshader
-res://shaders/beam.gdshader
-res://shaders/one_bit_shader.gdshader
-res://scripts/beam.gd
-res://scripts/rune_mist_manager.gd
-res://objects/systems/rune_mist_manager.tscn
-res://scenes/main.tscn
 res://shaders/rune_mist.gdshader
+res://shaders/curtain.gdshader
+res://shaders/beam.gdshader
+res://shaders/spread.gdshader
+res://shaders/one_bit_shader.gdshader
+res://objects/ui/result_popup.tscn
+res://scripts/global/scene_manager.gd
+res://scenes/title.tscn
+res://scripts/title.gd
+res://scenes/main.tscn
+res://scripts/main.gd
+res://scripts/ui/result_popup.gd
+res://scripts/curtain.gd
+res://scripts/ui/score.gd
+res://objects/player.tscn
+res://scripts/class/player/player.gd
+res://objects/global/one_bit_shader.tscn

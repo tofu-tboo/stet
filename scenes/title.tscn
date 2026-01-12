@@ -1,6 +1,20 @@
-[gd_scene format=3 uid="uid://ddt5pcb4167i3"]
+[gd_scene load_steps=5 format=3 uid="uid://ddt5pcb4167i3"]
+
+[ext_resource type="Script" uid="uid://bidbfd2hfpsqn" path="res://scripts/title.gd" id="1_b3w7a"]
+[ext_resource type="Texture2D" uid="uid://dopbcaalc2cnl" path="res://textures/ui/btn_normal.png" id="1_p6dhs"]
+[ext_resource type="Script" uid="uid://brcojl05vg136" path="res://scripts/ui/custom_button.gd" id="2_pyl7j"]
+[ext_resource type="Texture2D" uid="uid://dxs0kvylj8kw0" path="res://textures/ui/btn_pushed.png" id="3_b3w7a"]
 
 [node name="Title" type="Node"]
+script = ExtResource("1_b3w7a")
+
+[node name="Base" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5
@@ -18,3 +32,51 @@ theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 36
 text = "Steward  Through  Everlasting  Tomes"
+
+[node name="PlayButton" type="NinePatchRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 110.0
+offset_right = 36.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(36, 0)
+texture = ExtResource("1_p6dhs")
+patch_margin_left = 12
+patch_margin_top = 17
+patch_margin_right = 12
+patch_margin_bottom = 14
+script = ExtResource("2_pyl7j")
+pressed_texture = ExtResource("3_b3w7a")
+
+[node name="Label" type="Label" parent="PlayButton"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.5
+offset_top = 3.0
+offset_right = 16.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Play"
+horizontal_alignment = 1
+
+[node name="Control" type="Label" parent="."]
+offset_left = 160.0
+offset_top = 272.0
+offset_right = 671.0
+offset_bottom = 297.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+text = "W, A - Move        Spacebar -Jump        Mouse R&L - Attack"
+
+[connection signal="pressed" from="PlayButton" to="." method="move_scene"]

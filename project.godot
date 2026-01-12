@@ -18,12 +18,14 @@ config/icon="res://icon.png"
 [autoload]
 
 ResponsiveWindow="res://scripts/global/responsive_window.gd"
-GlobalEventHandler="res://scripts/global/global_event_handler.gd"
+GlobalEventHandler="*res://scripts/global/global_event_handler.gd"
 Utility="*res://scripts/global/util.gd"
 GlobalPopupManager="*res://objects/global/global_popup_manager.tscn"
 OneBitShader="res://objects/global/one_bit_shader.tscn"
 Counter="*res://scripts/global/counter.gd"
 MousePointer="*res://objects/global/mouse_pointer.tscn"
+SceneManager="*res://scripts/global/scene_manager.gd"
+GlobalData="*res://scripts/global/global_data.gd"
 
 [display]
 
@@ -33,7 +35,6 @@ window/size/maximize_disabled=true
 window/size/window_width_override=2496
 window/size/window_height_override=1404
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 
 [file_customization]
 
@@ -49,6 +50,8 @@ folder_colors={
 
 Obstacle=""
 Boundary=""
+MistManager=""
+Player=""
 
 [gui]
 

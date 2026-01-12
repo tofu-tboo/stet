@@ -38,6 +38,8 @@ var _seeds: Array[Dock] = []
 	set(v):
 		gen_dir = v
 
+@export var gen_intv: float = 1.0
+
 func _ready() -> void:
 	SingletonHook.sure_only_one_load(self)
 
@@ -52,6 +54,8 @@ func _ready() -> void:
 	_set_gen_region_y()
 
 	_seeds.clear()
+
+	$Tick.wait_time = gen_intv
 	#$Tick.stop()
 
 func start_generation() -> void:
@@ -91,13 +95,10 @@ func generate(hard_seeds: Array[Dock] = [], restrains: Array[Dock] = [], explode
 			var candidate_disk: Disk = Disk.new(candidate_pos, new_size) # 거리 비교 위한 디스크 생성
 			
 			if _constraint_test(candidate_disk, constraint):
-				prints("const failed", candidate_disk.pos, candidate_disk.radius, constraint)
-				prints("::", norm.disk.pos, dir, norm.disk.radius, new_size)
 				continue # 화면 안쪽 또는 화면 가로 밖이면 다시 시도
 
 			for dock: Dock in restrain_list:
 				if Disk.gap(candidate_disk, dock.disk) < min_gap:
-					print("restr failed")
 					is_valid = false
 					continue
 			
